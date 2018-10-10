@@ -1,0 +1,77 @@
+﻿<Window x:Class="Dream_Society_Project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"   
+        xmlns:local="clr-namespace:Dream_Society_Project"
+        xmlns:views="clr-namespace:Dream_Society_Project.UserControls"
+        Title="DreamSociety" Height="600" Width="720" WindowStyle="ToolWindow">
+    <Grid>
+        <Grid Height="50" VerticalAlignment="Top" Background="LightBlue">
+            <TextBlock Text="Dream Project" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Lucida Bright"/>
+        </Grid>
+      
+        <Grid Margin="0 45 0 0">
+
+            <dragablz:TabablzControl>
+
+                <dragablz:TabablzControl.InterTabController>
+
+                    <dragablz:InterTabController />
+
+                </dragablz:TabablzControl.InterTabController>
+
+                <TabItem Header="HOME">
+
+                    <Grid Background="LightBlue">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="360"/>
+                            <ColumnDefinition Width="360"/>                           
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="290"/>
+
+                        </Grid.RowDefinitions>
+                        
+                        
+                            <TextBox x:Name="txtFileName" Height="35" Width="280" Grid.Column="0" HorizontalAlignment="Right"  Margin="0,0,20,0"></TextBox>
+                            <Button x:Name="btnBrowse" Grid.Column="1" Content="Browse" Style="{StaticResource Circular}" Height="45" Width="95" HorizontalAlignment="Left" Margin="10,0,0,0" BorderBrush="CadetBlue" BorderThickness="3" Foreground="Blue" FontSize="25" Background="LightBlue" Click="btnBrowse_Click"/>
+                        
+                        
+                        <TextBox x:Name="txtName" HorizontalAlignment="Right" Height="35" Margin="0,0,20,0" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Text=""  Width="280"/>
+
+                        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" FontSize="25" Foreground="Blue" BorderBrush="CadetBlue" BorderThickness="3" Background="LightBlue" Height="45" Width="95" Style="{StaticResource Circular}" Margin="10,0,0,0"/>
+
+                        <DataGrid x:Name="grdView" Grid.ColumnSpan="3" Grid.Row="2" Height="200" Width="650"  ItemsSource="{Binding lll}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding AadhaarNumber}" Header="AadhaarNumber"/>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
+                                <DataGridTextColumn Binding="{Binding Village}" Header="Village"/>
+                                <DataGridTextColumn Binding="{Binding Mandal}" Header="Mandal"/>
+                                <DataGridTextColumn Binding="{Binding BranchName}" Header="BranchName"/>
+                                <DataGridTemplateColumn Header="Edit">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate> 
+                                            <Button x:Name="btnEdit" Content="Edit" Click="btnEdit_Click"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+
+                </TabItem>
+
+                <TabItem Name="create" Header="CREATE">
+                    <views:UserDetail/>
+                </TabItem>
+                <TabItem Header="ABOUT">
+                </TabItem>
+            </dragablz:TabablzControl>
+        </Grid>
+    </Grid>
+</Window>
